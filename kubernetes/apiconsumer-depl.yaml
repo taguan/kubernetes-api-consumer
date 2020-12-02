@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apiconsumer-depl
+  labels:
+    app: apiconsumer-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apiconsumer-app
+  template:
+    metadata:
+      labels:
+        app: apiconsumer-app
+    spec:
+      containers:
+        - name: apiconsumer
+          image: eu.gcr.io/basiles-ng/apiconsumer:1.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9000
+        - name: sidecar-kube-proxy
+          image: eu.gcr.io/basiles-ng/sidecar-kube-proxy:1.0
+          ports:
+            - containerPort: 8081
+

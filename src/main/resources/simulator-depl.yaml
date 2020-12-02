@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: REPLACE-THIS-depl
+  labels:
+    app: REPLACE-THIS-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: REPLACE-THIS-app
+  template:
+    metadata:
+      labels:
+        app: REPLACE-THIS-app
+    spec:
+      containers:
+        - name: nginx-sim-demo
+          image: nginx
+          ports:
+            - containerPort: 80
+          env:
+            - name : BUNDLE_NAME_ENV #this makes the environment variable BUNDLE_NAME available in the Docker container. we do not do anything with it in this example, this is just to demonstrate the concept
+              valueFrom:
+                configMapKeyRef:
+                  name: REPLACE-THIS-cm
+                  key: bundle.name
+
