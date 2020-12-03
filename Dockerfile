@@ -1,9 +1,8 @@
 FROM openjdk:11-jdk-slim
-VOLUME /tmp
+
+VOLUME /bundles
 ENV JAVA_OPTS=""
 ENV SIMULATOR_BUNDLE_LOCATION=/bundles
-
-RUN mkdir -p /bundles
 
 ENTRYPOINT exec java $JAVA_OPTS -jar /usr/share/kubernetes-api-consumer.jar --server.port=9000
 

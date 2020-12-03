@@ -90,4 +90,17 @@ public class DemoRestController {
         Files.deleteIfExists(bundleFilePath);
     }
 
+    @GetMapping("/bundle/{bundleName}")
+    public String getService(@PathVariable String bundleName) throws IOException, ApiException {
+        ApiClient apiClient = Config.defaultClient();
+        Configuration.setDefaultApiClient(apiClient);
+
+        CoreV1Api coreApi = new CoreV1Api();
+
+        V1Service service = coreApi.readNamespacedService(bundleName + "-svc", "default", null, null, null);
+        return service.toString();
+
+
+    }
+
 }

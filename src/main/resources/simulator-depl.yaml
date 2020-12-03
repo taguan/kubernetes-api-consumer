@@ -25,4 +25,11 @@ spec:
                 configMapKeyRef:
                   name: REPLACE-THIS-cm
                   key: bundle.name
+          volumeMounts:
+            - name: bundle-storage
+              mountPath: /usr/share/nginx/html
+      volumes:
+        - name: bundle-storage
+          persistentVolumeClaim:
+            claimName: nfs-volume-claim
 

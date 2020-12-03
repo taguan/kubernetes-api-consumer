@@ -1,0 +1,2 @@
+gcloud container clusters get-credentials cluster-1 --zone=europe-north1-c
+gcloud filestore instances create nfs-server --project=basiles-ng --zone=europe-north1-c --tier=STANDARD --file-share=name=myVolume,capacity=1TB --network=name="default"
